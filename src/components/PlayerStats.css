@@ -1,0 +1,162 @@
+.player_stats {
+    flex: 1 1 20%;
+    margin-top: 20px;
+}
+
+.clearfix {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.past_rank {
+    height: 50px;
+    width: 50px;
+}
+
+.past_ranks {
+    margin: 0px;
+    padding: 10px;
+    text-align: center;
+}
+
+.player_stats__header {
+    text-align: center;
+    width: 240px;
+    color: white;
+    background-color: #3062AB;
+}
+
+.player_stats__currank {
+    padding-top: 1px;
+    width: 240px;
+    color: white;
+    background-color: #242424;
+}
+
+.player_stats__pastrank {
+    padding-top: 1px;
+    width: 240px;
+    color: white;
+    background-color: #8D8D8D;
+}
+
+.player_stats__pastrank p {
+    font-weight: 100;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 10px;
+}
+
+.player_name {
+    font-size: 1.2rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    margin: 0px;
+}
+
+.centered_row {
+    text-align: center;
+}
+
+.centered_col {
+    text-align: center;
+    display: inline-block;
+    padding: 10px;
+}
+
+.centered_col_compact {
+    text-align: center;
+    display: inline-block;
+}
+
+.centered_col p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    line-height: 0px;
+    font-weight: 600;
+}
+
+.centered_col span {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+
+.player_stats__single {
+    flex: 1;
+}
+
+.player_stats .profile_pic {
+    height: 120px;
+    width: 120px;
+    border-radius: 5px;
+}
+
+.player_stats .rank_v2 {
+    position: relative;
+    height: 50px;
+    padding: 5px;
+    border-radius: 60px;
+    background-color: rgba( 0, 0, 0, 0.5 );
+    left: -30px;
+    top: -45px;
+}
+
+.player_stats__vert {
+    flex-direction: column;
+}
+
+.player_stats___single {
+    flex: 1;
+}
+
+.player_stats .ranking {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #808080;
+    max-width: 120px;
+    text-align: center;
+}
+
+.player_stats .rank {
+    height: 60px;
+    width: 60px;
+    margin: 0 auto;
+}
+
+.player_stats .rank_mmr {
+    color: #FFF;
+    text-align: center;
+}
+
+.player_stats .fav_op {
+    height: 65px;
+    width: 65px;
+}
+
+.col_header {
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.col_header img {
+    float: left;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+.col_header p {
+    font-weight: 100;
+    font-size: 1.2rem;
+    display: table-cell;
+    vertical-align: middle;
+    height: 60px;
+    padding-left: 10px;
+}

@@ -1,0 +1,9 @@
+footer {
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
