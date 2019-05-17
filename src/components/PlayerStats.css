@@ -34,6 +34,11 @@
     background-color: #AB3F30;
 }
 
+.multiple_list_item {
+    list-style: none;
+    cursor: pointer;
+}
+
 .player_stats__currank {
     padding-top: 1px;
     width: 240px;
@@ -101,6 +106,12 @@
 .player_stats .profile_pic {
     height: 120px;
     width: 120px;
+    border-radius: 5px;
+}
+
+.player_stats .profile_pic_small {
+    height: 80px;
+    width: 80px;
     border-radius: 5px;
 }
 

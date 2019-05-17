@@ -5,6 +5,7 @@ import './PlayerStats.css';
 
 const SEASON_START = 6;
 const SEASON_END = 12;
+const MAX_RESULTS = 5;
 
 export default class PlayerStats extends React.Component {
 
@@ -12,8 +13,10 @@ export default class PlayerStats extends React.Component {
     super( props );
     this.state = {
       name: this.props.name,
-      setup: false
+      setup: false,
+      results: []
     }
+    this.updateStats = this.updateStats.bind( this );
     this.refresh( );
   }
 
@@ -22,18 +25,8 @@ export default class PlayerStats extends React.Component {
       this.refresh( );
   }
 
-  refresh = debounce( async () => {
-
-    let users = await fetchUserID( this.props.name );
-    if( users.length !== 1 ) {
-      this.setState({ 
-        setup: false,
-        name: this.props.name
-      });
-      return;
-    }
-  
-    let resp = await fetchUserStats( users[ 0 ].id );
+  async updateStats( user_id ) {
+    let resp = await fetchUserStats( user_id );
     if( resp.playerfound === false ) {
       this.setState({ 
         setup: false,
@@ -57,6 +50,7 @@ export default class PlayerStats extends React.Component {
     }
 
     this.setState({
+      name: resp.p_name,
       rank_mmr: resp.p_currentmmr,
       level: resp.p_level,
       fav_atk: resp.favattacker.replace( ':', '-' ),
@@ -68,13 +62,56 @@ export default class PlayerStats extends React.Component {
       rank_kd: rank_kd,
       rank_wr: rank_wr * 100,
       past_ranks: past_ranks,
-      name: this.props.name,
-      setup: true
+      setup: true,
+      results: []
     });
+  }
+
+  refresh = debounce( async () => {
+
+    let users = await fetchUserID( this.props.name );
+    if( users.length === 0 ) {
+      this.setState({ 
+        setup: false,
+        name: this.props.name
+      });
+      return;
+    } else if( users.length === 1 ) {
+      this.updateStats( users[ 0 ].id );
+    } else {
+      users = users.slice( 0, MAX_RESULTS );
+      this.setState({
+        results: users
+      });
+    }
+  
   }, 1000 );
 
   render( ) {
-    if( this.state.name && (this.state.setup === false) ) {
+    if( this.state.results.length > 0 ) {
+      return (
+        <div className="player_stats">
+          <h3>Multiple Results Found</h3>
+          <ul>
+            {this.state.results.map( (user, idx) => {
+              return (
+                <li 
+                  key={idx} 
+                  className="multiple_list_item"
+                  onClick={() => {
+                    this.updateStats( user.id );
+                  }}>
+                  <h4 className="player_name">{user.name}</h4>
+                  <img className="profile_pic_small" 
+                    alt="profile_pic"
+                    src={`https://ubisoft-avatars.akamaized.net/${user.user}/default_146_146.png`}/>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    } else if( this.state.name && (this.state.setup === false) ) {
       return (
         <div className="player_stats">
 
@@ -161,20 +198,22 @@ export default class PlayerStats extends React.Component {
 
           </div>
 
-          <div className="player_stats__pastrank">
-            <ul className="past_ranks">
-              {this.state.past_ranks.map( (val, idx) => {
-                return (
-                  <img 
-                    className="past_rank"
-                    alt="player's past rank"
-                    key={idx} 
-                    src={`https://r6tab.com/images/pngranks/${val}.png`} />
-                )
-              })}
-            </ul>
-            <p>Past Seasons</p>
-          </div>
+          { this.state.past_ranks.length > 0 && 
+            <div className="player_stats__pastrank">
+              <ul className="past_ranks">
+                {this.state.past_ranks.map( (val, idx) => {
+                  return (
+                    <img 
+                      className="past_rank"
+                      alt="player's past rank"
+                      key={idx} 
+                      src={`https://r6tab.com/images/pngranks/${val}.png`} />
+                  )
+                })}
+              </ul>
+              <p>Past Seasons</p>
+            </div>
+          }
         </div>
       );
     }
