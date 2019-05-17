@@ -20,6 +20,22 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
+.input_invalid input {
+  animation: border_anim 5s infinite;
+}
+
+@keyframes border_anim {
+  0% {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    border-bottom: 1px solid rgba(0, 0, 0, 1);
+  }
+  100% {
+    border-bottom: 1px solid rgba(255, 0, 0, 0.25);
+  }
+}
+
 .player_profiles {
   display: flex;
   justify-content: center;

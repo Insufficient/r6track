@@ -65,6 +65,7 @@ export default class PlayerStats extends React.Component {
       setup: true,
       results: []
     });
+    this.props.valid( true );
   }
 
   refresh = debounce( async () => {
@@ -75,6 +76,7 @@ export default class PlayerStats extends React.Component {
         setup: false,
         name: this.props.name
       });
+      this.props.valid( false );
       return;
     } else if( users.length === 1 ) {
       this.updateStats( users[ 0 ].id );
@@ -117,6 +119,7 @@ export default class PlayerStats extends React.Component {
 
           <div className="player_stats__header">
             <h3 className="player_name">{this.state.name}</h3>
+            <p>Player not found.</p>
           </div>
         </div>
       )

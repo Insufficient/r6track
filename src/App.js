@@ -14,12 +14,14 @@ export default class App extends React.Component {
       player_names: [],
       setup: true,
       img: undefined,
-      teamIdx: 5
+      teamIdx: 5,
+      validity: new Array( NUM_PLAYERS ).fill( true )
     }
 
     this.handleChange = this.handleChange.bind( this );
     this.getPlayers = this.getPlayers.bind( this );
     this.adjustTeamIdx = this.adjustTeamIdx.bind( this );
+    this.markValidity = this.markValidity.bind( this );
   }
 
   handleChange( idx, ev ) {
@@ -40,6 +42,15 @@ export default class App extends React.Component {
   adjustTeamIdx( idx ) {
     this.setState({
       teamIdx: idx
+    });
+  }
+
+  markValidity( idx, status ) {
+    let valid = this.state.validity.slice( );
+
+    valid[ idx ] = status;
+    this.setState({
+      validity: valid
     });
   }
 
@@ -65,7 +76,7 @@ export default class App extends React.Component {
             {this.state.player_names.map( (val, idx) => {
               return (
                 <li 
-                  className="input_list"
+                  className={"input_list " + (!this.state.validity[idx] && "input_invalid") }
                   key={idx}>
                   <input
                     className={"input_name " + (idx < this.state.teamIdx ? "blue_team_text" : "red_team_text")}
@@ -98,7 +109,8 @@ export default class App extends React.Component {
               <PlayerStats 
                 key={idx} 
                 name={val}
-                team={idx < this.state.teamIdx ? 0 : 1}/>
+                team={idx < this.state.teamIdx ? 0 : 1}
+                valid={this.markValidity.bind( null, idx )}/>
             )
           })}
           </div>

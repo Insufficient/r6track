@@ -23,15 +23,17 @@
 .player_stats__header {
     text-align: center;
     width: 240px;
-    color: white;
+    color: black;
 }
 
 .blue_team {
     background-color: #3062AB;
+    color: white;
 }
 
 .red_team {
     background-color: #AB3F30;
+    color: white;
 }
 
 .multiple_list_item {
