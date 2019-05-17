@@ -13,11 +13,13 @@ export default class App extends React.Component {
     this.state = {
       player_names: [],
       setup: true,
-      img: undefined
+      img: undefined,
+      teamIdx: 5
     }
 
     this.handleChange = this.handleChange.bind( this );
     this.getPlayers = this.getPlayers.bind( this );
+    this.adjustTeamIdx = this.adjustTeamIdx.bind( this );
   }
 
   handleChange( idx, ev ) {
@@ -32,6 +34,12 @@ export default class App extends React.Component {
   getPlayers( players ) {
     this.setState({
       player_names: players.filter( itm => itm.length > 0 ).slice( 0, NUM_PLAYERS )
+    });
+  }
+
+  adjustTeamIdx( idx ) {
+    this.setState({
+      teamIdx: idx
     });
   }
 
@@ -60,9 +68,14 @@ export default class App extends React.Component {
                   className="input_list"
                   key={idx}>
                   <input
-                    className="input_name"
+                    className={"input_name " + (idx < this.state.teamIdx ? "blue_team_text" : "red_team_text")}
                     value={val}
                     onChange={(ev) => this.handleChange(idx, ev)}/>
+                  <button 
+                    title="Indicates that this player is from another team"
+                    onClick={() => this.adjustTeamIdx( idx )}>
+                    Switch Team
+                  </button>
                 </li>
               )
             })}
@@ -84,7 +97,8 @@ export default class App extends React.Component {
             return (
               <PlayerStats 
                 key={idx} 
-                name={val} />
+                name={val}
+                team={idx < this.state.teamIdx ? 0 : 1}/>
             )
           })}
           </div>

@@ -87,7 +87,7 @@ export default class PlayerStats extends React.Component {
       return (
         <div className="player_stats">
 
-          <div className="player_stats__header">
+          <div className={"player_stats__header " + (this.props.team ? "red_team" : "blue_team")}>
             <h3 className="player_name">{this.state.name}</h3>
 
             <div className="centered_row">

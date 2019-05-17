@@ -24,7 +24,14 @@
     text-align: center;
     width: 240px;
     color: white;
+}
+
+.blue_team {
     background-color: #3062AB;
+}
+
+.red_team {
+    background-color: #AB3F30;
 }
 
 .player_stats__currank {
