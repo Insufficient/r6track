@@ -1,4 +1,3 @@
-const fetch = require( 'node-fetch' );
 const Form = require( 'form-data' );
 require( 'dotenv' ).config( );
 
