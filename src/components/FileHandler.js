@@ -15,8 +15,7 @@ export default class FileHandler extends React.Component {
   constructor( props ) {
     super( props );
     this.state = {
-      rectImg: undefined, 
-      setup: this.props.setup
+      rectImg: undefined
     }
     this.dropHandler = this.dropHandler.bind( this );
     this.mouseDown = this.mouseDown.bind( this );
@@ -26,10 +25,26 @@ export default class FileHandler extends React.Component {
     this.resize = this.resize.bind( this );
     
     this.getRectImg = this.getRectImg.bind( this );
+
+    this.clearSettings = this.clearSettings.bind( this );
+  }
+
+  clearSettings( ) {
+    this.setState({
+      bX: undefined,
+      bY: undefined,
+      eX: undefined,
+      eY: undefined,
+      setup: true
+    });
+    localStorage.removeItem( 'eX' );
+    localStorage.removeItem( 'eY' );
+    localStorage.removeItem( 'bX' );
+    localStorage.removeItem( 'bY' );
   }
 
   async getRectImg( ) {
-    if( this.state.bX ) {
+    if( this.state.eX ) {
       const canvas = this.state.image;
       if( canvas ) {
         const ctx = canvas.getContext( '2d' );
@@ -42,6 +57,11 @@ export default class FileHandler extends React.Component {
         let rectImg = can.toDataURL( );
         let res = await ocrImg( rectImg );
         this.props.getPlayers( res );
+
+        localStorage[ 'eX' ] = this.state.eX;
+        localStorage[ 'eY' ] = this.state.eY;
+        localStorage[ 'bX' ] = this.state.bX;
+        localStorage[ 'bY' ] = this.state.bY;
       }
     }
   }
@@ -153,6 +173,18 @@ export default class FileHandler extends React.Component {
     this.paint( );
   }
 
+  componentWillMount( ) {
+    if( 'eX' in localStorage ) {
+      this.setState({
+        eX: localStorage[ 'eX' ],
+        eY: localStorage[ 'eY' ],
+        bX: localStorage[ 'bX' ],
+        bY: localStorage[ 'bY' ],
+        setup: false
+      });
+    }
+  }
+
   componentWillUnmount( ) {
     window.removeEventListener( 'resize', this.resize );
   }
@@ -191,6 +223,13 @@ export default class FileHandler extends React.Component {
               display: 'none'
             }
           }/>
+
+        <br/>
+
+        <button
+          onClick={() => this.clearSettings( )}>
+          Clear Settings
+        </button>
       </>
     )
   }
