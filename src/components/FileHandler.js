@@ -15,7 +15,8 @@ export default class FileHandler extends React.Component {
   constructor( props ) {
     super( props );
     this.state = {
-      rectImg: undefined
+      rectImg: undefined,
+      setup: true
     }
     this.dropHandler = this.dropHandler.bind( this );
     this.mouseDown = this.mouseDown.bind( this );

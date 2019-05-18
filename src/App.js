@@ -12,7 +12,6 @@ export default class App extends React.Component {
 
     this.state = {
       player_names: [],
-      setup: true,
       img: undefined,
       teamIdx: 5,
       validity: new Array( NUM_PLAYERS ).fill( true )
@@ -68,7 +67,7 @@ export default class App extends React.Component {
             that R6 stores your screenshots is <span className="code">C:\Users\User\Pictures\Uplay\Tom Clancy's Rainbow Six® Siege</span></p>
         </div>
 
-        <FileHandler setup={this.state.setup} getPlayers={this.getPlayers}/>
+        <FileHandler getPlayers={this.getPlayers}/>
 
         <div className="App">
           <h2>Players</h2>
