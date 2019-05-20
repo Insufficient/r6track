@@ -2,7 +2,7 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
 
-.App {
+.container {
   max-width: 1280px;
   padding: 20px;
   margin: 0 auto;
@@ -24,6 +24,12 @@ body {
   animation: border_anim 5s infinite;
 }
 
+.instructions li {
+  padding: 5px;
+  line-height: 1.5rem;
+  list-style: number;
+}
+
 @keyframes border_anim {
   0% {
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
@@ -43,9 +49,9 @@ body {
 }
 
 .code {
-  background-color: grey;
+  background-color: #ececec;
   padding: 1px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .blue_team_text {
@@ -54,4 +60,10 @@ body {
 
 .red_team_text {
   color: #AB3F30;
+}
+
+.input_error {
+  padding: 10px;
+  font-size: 1.3rem;
+  font-weight: 500;
 }
