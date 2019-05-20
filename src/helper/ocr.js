@@ -2,7 +2,7 @@ const Form = require("form-data");
 require("dotenv").config();
 
 const API_KEY = process.env.REACT_APP_OCR_KEY;
-const URL = "https://api.ocr.space/parse/imagex";
+const URL = "https://api.ocr.space/parse/image";
 
 export default async function ocrImg(imgData) {
   let form = new Form();
