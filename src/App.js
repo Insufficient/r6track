@@ -81,6 +81,10 @@ export default class App extends React.Component {
               When you start a new game, your window settings will be saved so
               just upload your screenshot!
             </li>
+            <li>
+              For a demo/example picture, click{" "}
+              <a href="/screenshot.png">here</a>
+            </li>
           </ul>
         </div>
 
