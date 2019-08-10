@@ -1,6 +1,7 @@
 .player_stats {
     flex: 1 1 20%;
     margin-top: 20px;
+    text-align: center;
 }
 
 .clearfix {
@@ -179,4 +180,8 @@
     vertical-align: middle;
     height: 60px;
     padding-left: 10px;
+}
+
+.multiple_results {
+    padding: 0;
 }

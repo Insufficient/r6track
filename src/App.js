@@ -14,7 +14,8 @@ export default class App extends React.Component {
       player_names: [],
       img: undefined,
       teamIdx: 5,
-      validity: new Array(NUM_PLAYERS).fill(true)
+      validity: new Array(NUM_PLAYERS).fill(true),
+      showInstructions: true
     };
   }
 
@@ -49,43 +50,48 @@ export default class App extends React.Component {
   };
 
   render() {
+    const instructions = (<ul className="instructions">
+      <li>
+        Press <i>F12</i> in-game to take a screenshot of the scoreboard
+        (opened by <i>Tab</i> key)
+      </li>
+      <li>
+        Click the white box with a black border below and upload your
+        screenshot, default location is <br />
+        <span className="code">
+                C:\Users\User\Pictures\Uplay\Tom Clancy's Rainbow Six® Siege
+              </span>
+      </li>
+      <li>
+        Click and drag a window that only contains the player names
+        (without any other text or icons). <br />
+        If you selected a window incorrectly, click on the "Clear
+        Settings" button
+      </li>
+      <li>
+        Scroll down and the extracted player names will appear within 10
+        seconds along with their stats. <br />
+      </li>
+      <li>
+        When you start a new game, your window settings will be saved so
+        just upload your screenshot!
+      </li>
+      <li>
+        For a demo/example picture, click{" "}
+        <a href="/screenshot.png">here</a>
+      </li>
+    </ul>);
+
     return (
       <>
         <div className="container">
           <h1>Rainbow Six Track</h1>
 
           <h2>Instructions</h2>
-          <ul className="instructions">
-            <li>
-              Press <i>F12</i> in-game to take a screenshot of the scoreboard
-              (opened by <i>Tab</i> key)
-            </li>
-            <li>
-              Click the white box with a black border below and upload your
-              screenshot, default location is <br />
-              <span className="code">
-                C:\Users\User\Pictures\Uplay\Tom Clancy's Rainbow Six® Siege
-              </span>
-            </li>
-            <li>
-              Click and drag a window that only contains the player names
-              (without any other text or icons). <br />
-              If you selected a window incorrectly, click on the "Clear
-              Settings" button
-            </li>
-            <li>
-              Scroll down and the extracted player names will appear within 10
-              seconds along with their stats. <br />
-            </li>
-            <li>
-              When you start a new game, your window settings will be saved so
-              just upload your screenshot!
-            </li>
-            <li>
-              For a demo/example picture, click{" "}
-              <a href="/screenshot.png">here</a>
-            </li>
-          </ul>
+          <button onClick={() => this.setState({
+            showInstructions: !this.state.showInstructions
+          })}>Toggle Instructions</button>
+          {this.state.showInstructions ? instructions : ''}
         </div>
 
         <FileHandler getPlayers={this.getPlayers} />

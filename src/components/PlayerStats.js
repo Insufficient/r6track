@@ -93,7 +93,7 @@ export default class PlayerStats extends React.Component {
       return (
         <div className="player_stats">
           <h3>Multiple Results Found</h3>
-          <ul>
+          <ul className="multiple_results">
             {this.state.results.map((user, idx) => {
               return (
                 <li
