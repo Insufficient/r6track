@@ -10,6 +10,9 @@ This is a personal project so that I can learn a bit more about React and APIs i
 
 [Netlify](https://r6track.netlify.com)
 
+## Updates
+- 19/08/2018 - added timeout to r6tab/ocr.space, replace and validate names 
+
 ## Notes
 
 - Since R6Tab API does not return CORS headers, a [reverse proxy service](https://cors-anywhere.herokuapp.com) is used.

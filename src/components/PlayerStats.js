@@ -2,6 +2,7 @@ import React from "react";
 import debounce from "lodash/debounce";
 import { fetchUserID, fetchUserStats } from "../helper/r6tab";
 import "./PlayerStats.css";
+import {validify_name} from "../helper/name";
 
 const SEASON_START = 6;
 const SEASON_END = 12;
@@ -70,11 +71,12 @@ export default class PlayerStats extends React.Component {
   };
 
   refresh = debounce(async () => {
-    let users = await fetchUserID(this.props.name);
+    const name = validify_name(this.props.name);
+    let users = await fetchUserID(name);
     if (users.length === 0) {
       this.setState({
         setup: false,
-        name: this.props.name
+        name: name
       });
       this.props.valid(false);
       return;
