@@ -5,7 +5,7 @@
   "dependencies": {
     "blueimp-load-image": "^2.21.0",
     "form-data": "^2.3.3",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0"
